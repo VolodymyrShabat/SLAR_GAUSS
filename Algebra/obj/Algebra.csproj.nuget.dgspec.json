@@ -1,30 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lenovo\\source\\repos\\Algebra\\Algebra\\Algebra.csproj": {}
+    "C:\\Users\\Volod\\source\\repos\\Algebra\\Algebra\\Algebra.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lenovo\\source\\repos\\Algebra\\Algebra\\Algebra.csproj": {
+    "C:\\Users\\Volod\\source\\repos\\Algebra\\Algebra\\Algebra.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lenovo\\source\\repos\\Algebra\\Algebra\\Algebra.csproj",
+        "projectUniqueName": "C:\\Users\\Volod\\source\\repos\\Algebra\\Algebra\\Algebra.csproj",
         "projectName": "Algebra",
-        "projectPath": "C:\\Users\\lenovo\\source\\repos\\Algebra\\Algebra\\Algebra.csproj",
-        "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lenovo\\source\\repos\\Algebra\\Algebra\\obj\\",
+        "projectPath": "C:\\Users\\Volod\\source\\repos\\Algebra\\Algebra\\Algebra.csproj",
+        "packagesPath": "C:\\Users\\Volod\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Volod\\source\\repos\\Algebra\\Algebra\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Volod\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "http://nuget.intenselab.net:8445/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -60,7 +62,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

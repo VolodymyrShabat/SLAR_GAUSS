@@ -1,21 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace Algebra
 {
     class Matrix
     {
-        public int n;
-        public int m;
-
-        public int[,] matrix;
+        public int n { get; }
+        public int m { get; }
+        
+        public double[,] matrix;
         public Matrix(int n, int m)
         {
             this.n = n;
             this.m = m;
-            this.matrix = new int[n, m];
+            this.matrix = new double[n, m];
         }
+        public Matrix(double[,] arr)
+        {
+            this.n = arr.GetLength(0);
+            this.m = arr.GetLength(1);
+            this.matrix = arr;
+        }
+
+        public double[] this[int index]
+        {
+            get
+            {
+                double[] returnedArray = new double[m];
+                for (int i = 0; i < m; i++)
+                {
+                    returnedArray[i] = matrix[index, i];
+                }
+                return returnedArray;
+            }
+            set
+            {
+                for (int i = 0; i < m; i++)
+                {
+                    matrix[index, i] = 0;
+                }
+                for (int i = m - value.Length; i < m; i++)
+                {
+                    matrix[index, i] = value[i];
+                }
+            }
+        }
+
+        public void Swap(int index1, int index2)
+        {
+            double temp;
+            for (int i = 0; i < m; i++)
+            {
+                temp = matrix[index1, i];
+                matrix[index1, i] = matrix[index2, i];
+                matrix[index2, i] = temp;
+            }
+
+        }
+        public double[] FindMaxIndex(int index)
+        {
+            double max = -1, maxIndex = -1;
+            for (int i = index; i < n; i++)
+            {
+
+                if (Math.Abs(this.matrix[i, index]) > max)
+                {
+                    max = this.matrix[i, index];
+                    maxIndex = i;
+                }
+            }
+            return new double[] { maxIndex, max };
+        }
+
+
+
+        public double this[int index1, int index2]
+        {
+            get
+            {
+                return matrix[index1, index2];
+            }
+            set
+            {
+                matrix[index1, index2] = value;
+            }
+        }
+
         public void GenerateMatrix(int left, int right)
         {
             Random r = new Random();
@@ -29,13 +100,13 @@ namespace Algebra
         }
         public void ReadFromArray(string[] arr)
         {
-            int[,] matrix = new int[n, m];
+            double[,] matrix = new double[n, m];
             for (int i = 0; i < n; i++)
             {
                 string[] temp = arr[i].Split(",");
                 for (int j = 0; j < m; j++)
                 {
-                    matrix[i, j] = int.Parse(temp[j]);
+                    matrix[i, j] = double.Parse(temp[j]);
                 }
             }
             this.matrix = matrix;
@@ -48,7 +119,7 @@ namespace Algebra
             {
                 for (int j = 0; j < m; j++)
                 {
-                    result += matrix[i, j] + " " ;
+                    result += matrix[i, j] + " ";
                 }
                 result += "\n";
             }
@@ -117,6 +188,9 @@ namespace Algebra
             }
 
         }
+
+
+
     }
 }
 

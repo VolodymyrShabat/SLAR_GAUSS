@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,7 +38,8 @@ namespace Algebra
             {
                 Matrix matrix = new Matrix(int.Parse(Amount.Text), int.Parse(Amount.Text) + 1);
                 matrix.GenerateMatrix(int.Parse(Left.Text), int.Parse(Right.Text));
-                Test.Text = matrix.ToString();
+                SLAR slar = new SLAR(matrix);
+                Test.Text = slar.GaussMethod();
             }
         }
 
@@ -48,12 +50,18 @@ namespace Algebra
             {
                 String s = File.ReadAllText(openFileDialog.FileName).ToString().Replace("\r\n", "  ");
                 string[] arr = s.Split("  ");
-                if(arr.Length==arr[0].Split(",").Length-1)
+                string result;
+                if (arr.Length==arr[0].Split(",").Length-1)
                 {
                     Matrix matrix = new Matrix(arr.Length, arr.Length + 1);        
                     matrix.ReadFromArray(arr);
-                    Test.Text = matrix.ToString();
+                    SLAR slar = new SLAR(matrix);
+                    Test.Text = slar.GaussMethod();
 
+                    var path = @"C:\Users\Volod\OneDrive\Рабочий стол\Answer.txt";
+                    result = slar.Steps.ToString();
+                    File.WriteAllText(path,string.Empty);
+                    File.WriteAllText(path,result);
                 }
                 else
                 {
