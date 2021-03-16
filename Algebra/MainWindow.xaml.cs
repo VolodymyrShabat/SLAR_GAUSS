@@ -36,10 +36,18 @@ namespace Algebra
             }
             else
             {
+                string textResult = string.Empty;
                 Matrix matrix = new Matrix(int.Parse(Amount.Text), int.Parse(Amount.Text) + 1);
                 matrix.GenerateMatrix(int.Parse(Left.Text), int.Parse(Right.Text));
                 SLAR slar = new SLAR(matrix);
-                Test.Text = slar.GaussMethod();
+                var arrR = new Vector(slar.GaussMethod(matrix)).vector;
+                for (int i = 0; i < arrR.Length; i++)
+                {
+                    textResult += "x_" + (i+1) + " = " + arrR[i] + "\n";
+                }
+               
+                Test.Text = textResult;
+                Inversion.Text = slar.Inversion().ToString();
             }
         }
 
@@ -51,13 +59,19 @@ namespace Algebra
                 String s = File.ReadAllText(openFileDialog.FileName).ToString().Replace("\r\n", "  ");
                 string[] arr = s.Split("  ");
                 string result;
+                string textResult =string.Empty;
                 if (arr.Length==arr[0].Split(",").Length-1)
                 {
                     Matrix matrix = new Matrix(arr.Length, arr.Length + 1);        
                     matrix.ReadFromArray(arr);
                     SLAR slar = new SLAR(matrix);
-                    Test.Text = slar.GaussMethod();
-
+                    var arrR = new Vector(slar.GaussMethod(matrix)).vector;
+                    for (int i = 0; i < arrR.Length; i++)
+                    {
+                        textResult += "x_" + (i+1) + " = " + arrR[i] + "\n";
+                    }
+                    Test.Text = textResult;
+                    Inversion.Text = slar.Inversion().ToString();
                     var path = @"C:\Users\Volod\OneDrive\Рабочий стол\Answer.txt";
                     result = slar.Steps.ToString();
                     File.WriteAllText(path,string.Empty);
@@ -73,6 +87,12 @@ namespace Algebra
             }    
                 
             
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Task1 t1 = new Task1();
+            t1.Show();
         }
     }
 }

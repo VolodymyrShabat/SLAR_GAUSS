@@ -36,3 +36,5 @@ C:\Users\Volod\source\repos\Algebra\Algebra\obj\Debug\netcoreapp3.1\Algebra.Asse
 C:\Users\Volod\source\repos\Algebra\Algebra\obj\Debug\netcoreapp3.1\Algebra.AssemblyInfo.cs
 C:\Users\Volod\source\repos\Algebra\Algebra\obj\Debug\netcoreapp3.1\Algebra.csproj.CoreCompileInputs.cache
 C:\Users\Volod\source\repos\Algebra\Algebra\obj\Debug\netcoreapp3.1\Algebra.genruntimeconfig.cache
+C:\Users\Volod\source\repos\Algebra\Algebra\obj\Debug\netcoreapp3.1\Task1.g.cs
+C:\Users\Volod\source\repos\Algebra\Algebra\obj\Debug\netcoreapp3.1\Task1.baml

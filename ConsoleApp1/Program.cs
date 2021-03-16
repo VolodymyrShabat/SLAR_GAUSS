@@ -13,17 +13,14 @@ namespace ConsoleApp1
             double[,] arr6 = { { 1,2,3,1,7 }, { 2,5,8,5,20 }, { 3,8,15,7,33 }, { 1,5,7,13,26 } };
             double[,] arr7 = { { 1,2,4,1,8 }, { 2,5,8,5,20 }, { 4,8,17,7,36 }, { 1,5,7,10,23 } };
 
-            //Matrix matrix = new Matrix(arr);
-            //SLAR slar = new SLAR(matrix);
-            //slar.GaussMethod();
 
 
 
 
-            //Matrix matrix3 = new Matrix(arr3);
-            //SLAR slar3 = new SLAR(matrix3);
-            //slar3.GaussMethod();
-
+            Matrix matrix3 = new Matrix(arr3);
+            SLAR slar3 = new SLAR(matrix3);
+            slar3.GaussMethod(matrix3);
+            slar3.Inversion();
 
             //Matrix matrix4 = new Matrix(arr4);
             //SLAR slar4 = new SLAR(matrix4);

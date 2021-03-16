@@ -120,12 +120,14 @@ namespace ConsoleApp1
             {
                 for (int j = 0; j < m; j++)
                 {
-                    result += matrix[i, j] + " ";
+                    result += Math.Round(matrix[i, j]) + " ";
                 }
                 result += "\n";
             }
             return result;
         }
+
+
         public static Matrix operator +(Matrix m1, Matrix m2)
         {
             if (m1.n != m2.n && m1.m != m2.m)
@@ -168,14 +170,14 @@ namespace ConsoleApp1
         }
         public static Matrix operator *(Matrix m1, Matrix m2)
         {
-            if (m1.m != m2.n)
+            if (m1.n != m2.m)
             {
                 return null;
             }
             else
             {
                 Matrix result = new Matrix(m1.n, m2.m);
-                for (int i = 0; i <= m1.n; i++)
+                for (int i = 0; i < m1.n; i++)
                 {
                     for (int j = 0; j < m2.m; j++)
                     {

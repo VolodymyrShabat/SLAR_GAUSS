@@ -174,7 +174,7 @@ namespace Algebra
             else
             {
                 Matrix result = new Matrix(m1.n, m2.m);
-                for (int i = 0; i <= m1.n; i++)
+                for (int i = 0; i < m1.n; i++)
                 {
                     for (int j = 0; j < m2.m; j++)
                     {

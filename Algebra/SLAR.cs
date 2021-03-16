@@ -10,7 +10,8 @@ namespace Algebra
         public Vector b;
         public int[] x;
         public StringBuilder Steps = new StringBuilder();
-
+        public Matrix A_1;
+        public Matrix Copy;
 
 
         public SLAR(Matrix m)
@@ -23,57 +24,93 @@ namespace Algebra
             this.A = m;
             this.b = new Vector(vector_b);
             this.x = new int[A.n];
+            A_1 = new Matrix(A.n, A.m);
+            Copy = new Matrix(A.n, A.m);
+            for (int i = 0; i < A_1.n; i++)
+            {
+                A_1[i] = new Vector(A[i]).vector;
+                Copy[i] = new Vector(A[i]).vector;
+            }
         }
 
-        public string GaussMethod()
+        public Matrix Inversion()
         {
-            double[] result = new double[A.n];
-            //Формування східчастої матриці
-            for (int i = 0; i < A.n; i++)
+            Matrix A1 = new Matrix(A_1.n, A_1.n);
+
+            for (int i = 0; i < A_1.n; i++)
             {
-                double[] tempResult = A.FindMaxIndex(i);
+                for (int j = 0; j < A_1.n; j++)
+                {
+                    if (i == j)
+                    {
+                        A1[i, j] = 1;
+                    }
+                }
+            }
+            Matrix mInv = new Matrix(A.n, A.n);
+            for (int i = 0; i < A_1.n; i++)
+            {
+                for (int k = 0; k < A_1.n; k++)
+                {
+                    A_1[k] = new Vector(Copy[k]).vector;
+                }
+                for (int j = 0; j < A_1.n; j++)
+                {
+                    A_1[j, A_1.m - 1] = A1[i, j];
+                }
+                mInv[i] = GaussMethod(A_1);
+            }
+            return mInv;
+        }
 
-                A.Swap((int)tempResult[0], i);
-                A[i] = (new Vector(A[i]) / tempResult[1]).vector;
 
-                for (int j = i + 1; j < A.n; j++)
+        public double[] GaussMethod(Matrix matrix)
+        {
+            double[] result = new double[matrix.n];
+            //Формування східчастої матриці
+            for (int i = 0; i < matrix.n; i++)
+            {
+                double[] tempResult = matrix.FindMaxIndex(i);
+
+                matrix.Swap((int)tempResult[0], i);
+                matrix[i] = (new Vector(matrix[i]) / tempResult[1]).vector;
+
+                for (int j = i + 1; j < matrix.n; j++)
                 {
 
-                    A[j] = ((new Vector(A[i]) * A[j][i]) - new Vector(A[j])).vector;
+                    matrix[j] = ((new Vector(matrix[i]) * matrix[j][i]) - new Vector(matrix[j])).vector;
                 }
-                Steps.Append(A.ToString());
+                Steps.Append(matrix.ToString());
                 Steps.Append("\n");
-    }
-            result[A.n - 1] = A[A.n - 1][A.m - 1];
+            }
+            result[matrix.n - 1] = matrix[matrix.n - 1][matrix.m - 1];
 
 
 
             //Обернений цикл
-            for (int i = 1; i < A.n; i++)
+            for (int i = 1; i < matrix.n; i++)
             {
                 double[] temp = new double[i];
                 for (int j = 0; j < i; j++)
                 {
-                    temp[j] = result[A.n - j - 1] * A.matrix[A.m - i - 2, A.m - j - 2];
+                    temp[j] = result[matrix.n - j - 1] * matrix.matrix[matrix.m - i - 2, A.m - j - 2];
                 }
-                result[A.n - 1 - i] = A.matrix[A.n - 1 - i, A.m - 1];
+                result[matrix.n - 1 - i] = matrix.matrix[matrix.n - 1 - i, matrix.m - 1];
                 for (int k = 0; k < temp.Length; k++)
                 {
-                    result[A.n - 1 - i] -= temp[k];
+                    result[matrix.n - 1 - i] -= temp[k];
                 }
             }
 
 
 
-            //Формування відповіді
-            StringBuilder s = new StringBuilder();
             for (int i = 0; i < result.Length; i++)
             {
-                s.Append("x_" + (i+1) + "= " + result[i] + "\n");
+                result[i]=Math.Round(result[i]);
             }
-           
-            
-            return s.ToString();
+
+
+            return result;
         }
     }
 }
